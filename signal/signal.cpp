@@ -8,44 +8,38 @@
 #include <cstdlib>
 
 //////////////////////////////////////////////////////////////////////
-//
 namespace
-  {
-    volatile std::sig_atomic_t gSignalStatus;
-  }
-
+{
+  volatile std::sig_atomic_t gSignalStatus;
+}
 //////////////////////////////////////////////////////////////////////
-//
-void signal_handler (int _signal);
-
+void signal_handler ( int );
 //////////////////////////////////////////////////////////////////////
-// Точка входа.
-//
 int
-main ()
-  {
-    // установка обработчика сигнала
-    std::signal (SIGINT, signal_handler);
+main ( )
+{
+  // установка обработчика сигнала
+  std::signal ( SIGINT, signal_handler );
 
-    std::cout << "Для обработки сигнала нажмите Ctrl+C\n"
-              << "Спим..."
-              << std::endl;
+  std::cout << "Для обработки сигнала нажмите Ctrl+C\n"
+            << "Спим..."
+            << std::endl;
 
-    while (true);
+  while ( true );
 
-    return 0;
-  }
+  return 0;
+}
 
 //--------------------------------------------------------------------
 // Реализация обработанного сигнала.
 //
 void
-signal_handler (int _signal)
-  {
-    gSignalStatus = _signal;
+signal_handler ( int _signal )
+{
+  gSignalStatus = _signal;
 
-    std::cout << "\nПодъем! Труба зовет..."
-              << std::endl;
+  std::cout << "\nПодъем! Труба зовет..."
+            << std::endl;
 
-    exit (1);
-  }
+  exit ( 1 );
+}
