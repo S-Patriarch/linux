@@ -1,6 +1,6 @@
 // sysinfo.cpp -*- C++ -*-
-//
 // Copyright (c) S-Patriarch, 2023
+
 // Получение информации о системе.
 
 #include <iostream>
@@ -8,10 +8,10 @@
 
 //////////////////////////////////////////////////////////////////////
 int
-main ( )
+main()
 {
   struct utsname sysinfo;
-  uname ( &sysinfo );
+  uname(&sysinfo);
 
   std::cout << "Наименование системы : "
             << sysinfo.sysname
