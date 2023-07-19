@@ -1,6 +1,6 @@
 // upd.cpp -*- C++ -*-
-//
 // Copyright (c) 2023 S-Patriarch
+
 // Обновление системы Linux семейства Debian.
 
 #include <iostream>
@@ -9,9 +9,9 @@
 
 //////////////////////////////////////////////////////////////////////
 int
-main ( int argc, char *argv [ ] )
+main(int argc, char *argv[])
 {
-  if ( argc != 2 )
+  if (argc != 2)
   {
     std::cout << "upd 2.1\n"
               << "Использование: upd [параметр]\n\n"
@@ -28,42 +28,42 @@ main ( int argc, char *argv [ ] )
     return 0;
   }
 
-  std::string  _argString { *( argv + 1 ) };
+  std::string  _argString{ *(argv + 1) };
 
-  if ( _argString == "-f" )
+  if (_argString == "-f")
   {
     //обновление системы до последней версии
-    std::system ( "sudo apt update && sudo apt full-upgrade -y" );
+    std::system("sudo apt update && sudo apt full-upgrade -y");
 
     // удаление неиспользуемых программ и ядер
-    std::system ( "sudo apt autoremove -y" );
+    std::system("sudo apt autoremove -y");
 
     // удаление старых скаченных файлов архивов
-    std::system ( "sudo apt autoclean -y" );
+    std::system("sudo apt autoclean -y");
 
     // удаление скаченных файлов архивов
-    std::system ( "sudo apt clean -y" );
+    std::system("sudo apt clean -y");
   }
   else
   { 
-    if ( _argString == "-u" )
+    if (_argString == "-u")
     {
       // обновление системы до последней версии
-      std::system ( "sudo apt update && sudo apt full-upgrade -y" );
+      std::system("sudo apt update && sudo apt full-upgrade -y");
     }
   }
   else 
   {
-    if ( _argString == "-c" )
+    if (_argString == "-c")
     {
       // удаление неиспользуемых программ и ядер
-      std::system ( "sudo apt autoremove -y" );
+      std::system("sudo apt autoremove -y");
 
       // удаление старых скаченных файлов архивов
-      std::system ( "sudo apt autoclean -y" );
+      std::system("sudo apt autoclean -y");
 
       // удаление скаченных файлов архивов
-      std::system ( "sudo apt clean -y" );
+      std::system("sudo apt clean -y");
     }
   }
   else
