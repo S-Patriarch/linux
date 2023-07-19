@@ -1,11 +1,13 @@
 // signal.cpp -*- C++ -*-
-//
 // Copyright (c) S-Patriarch, 2023
+
 // Обработка полученного сигнала.
 
 #include <iostream>
 #include <csignal>
 #include <cstdlib>
+
+void signal_handler(int);
 
 //////////////////////////////////////////////////////////////////////
 namespace
@@ -13,19 +15,17 @@ namespace
   volatile std::sig_atomic_t gSignalStatus;
 }
 //////////////////////////////////////////////////////////////////////
-void signal_handler ( int );
-//////////////////////////////////////////////////////////////////////
 int
-main ( )
+main()
 {
   // установка обработчика сигнала
-  std::signal ( SIGINT, signal_handler );
+  std::signal(SIGINT, signal_handler);
 
   std::cout << "Для обработки сигнала нажмите Ctrl+C\n"
             << "Спим..."
             << std::endl;
 
-  while ( true );
+  while (true);
 
   return 0;
 }
@@ -34,12 +34,12 @@ main ( )
 // Реализация обработанного сигнала.
 //
 void
-signal_handler ( int _signal )
+signal_handler(int _signal)
 {
   gSignalStatus = _signal;
 
   std::cout << "\nПодъем! Труба зовет..."
             << std::endl;
 
-  exit ( 1 );
+  exit(1);
 }
