@@ -6,31 +6,29 @@
 #include <iostream>
 #include <sys/utsname.h>
 
-//////////////////////////////////////////////////////////////////////
-int
-main()
+int main()
 {
-  struct utsname sysinfo;
-  uname(&sysinfo);
+    struct utsname sysinfo;
+    uname(&sysinfo);
 
-  std::cout << "Наименование системы : "
-            << sysinfo.sysname
-            << "\n"
-            << "Архитектура          : "
-            << sysinfo.machine
-            << "\n"
-            << "Наименование хоста   : "
-            << sysinfo.nodename
-            << "\n"
-            << "Версия ядра          : "
-            << sysinfo.release
-            << "\n"
-            << "Сборка ядра          : "
-            << sysinfo.version
-            << "\n"
-            << "Доменное имя         : "
-            << sysinfo.domainname
-            << std::endl;
+    std::cout << "Наименование системы : "
+        << sysinfo.sysname
+        << "\n"
+        << "Архитектура          : "
+        << sysinfo.machine
+        << "\n"
+        << "Наименование хоста   : "
+        << sysinfo.nodename
+        << "\n"
+        << "Версия ядра          : "
+        << sysinfo.release
+        << "\n"
+        << "Сборка ядра          : "
+        << sysinfo.version
+        << "\n"
+        << "Доменное имя         : "
+        << sysinfo.domainname
+        << std::endl;
 
-  return 0;
+    return 0;
 }
