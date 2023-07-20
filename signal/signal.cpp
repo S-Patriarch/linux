@@ -9,25 +9,22 @@
 
 void signal_handler(int);
 
-//////////////////////////////////////////////////////////////////////
 namespace
 {
-  volatile std::sig_atomic_t gSignalStatus;
+    volatile std::sig_atomic_t gSignalStatus;
 }
-//////////////////////////////////////////////////////////////////////
-int
-main()
+
+int main()
 {
-  // установка обработчика сигнала
-  std::signal(SIGINT, signal_handler);
+    // установка обработчика сигнала
+    std::signal(SIGINT, signal_handler);
 
-  std::cout << "Для обработки сигнала нажмите Ctrl+C\n"
-            << "Спим..."
-            << std::endl;
+    std::cout << "Для обработки сигнала нажмите Ctrl+C\n"
+        "Спим...\n";
 
-  while (true);
+    while (true);
 
-  return 0;
+    return 0;
 }
 
 //--------------------------------------------------------------------
@@ -36,10 +33,9 @@ main()
 void
 signal_handler(int _signal)
 {
-  gSignalStatus = _signal;
+    gSignalStatus = _signal;
 
-  std::cout << "\nПодъем! Труба зовет..."
-            << std::endl;
+    std::cout << "\nПодъем! Труба зовет...\n";
 
-  exit(1);
+    exit(1);
 }
