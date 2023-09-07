@@ -11,6 +11,7 @@
 
 #include <cstring>
 #include <iostream>
+#include <fstream>
 
 typedef unsigned int u32_t;
 
@@ -20,7 +21,7 @@ typedef unsigned int u32_t;
 std::string parser(const char* _str)
 {
     // храним длину принятой строки
-    u32_t _strLen { std::strlen(_str) };
+    u32_t _strLen = std::strlen(_str);
 
     u32_t _strStart { 0 };
     u32_t _strEnd { 0 };
@@ -56,16 +57,37 @@ std::string parser(const char* _str)
 }
 
 //////////////////////////////////////////////////////////////////////
-int main()
+int main(int argc, char* argv[])
 {
-    const char input1[] { "<h1>Hello, world</h1>" };
-    const char input2[] { "<h1>       This is a statement with sone spaces</h1>" };
-    const char input3[] { "<p> This is a statement with sone @ #S ., / special characters</p>     " };
+    if (argc != 2) {
+        std::cerr << "Использование: " << argv[0] << " [файл]\n"
+                  << "Пример:\n"
+                  << '\t' << argv[0] << " index.html"
+                  << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
 
-    std::cout << "Результат:\n";
-    std::cout << ::parser(input1) << std::endl;
-    std::cout << ::parser(input2) << std::endl;
-    std::cout << ::parser(input3) << std::endl;
+    std::string _argString { *(argv + 1) };
+    std::string _strIn { };
+    std::string _strOut { };
+
+    std::ifstream fIn(_argString);
+    std::ofstream fOut("result.out", std::ios::app);
+
+    if (!fIn.is_open()) {
+        std::cerr << "E: Не могу открыть целевой файл."
+                  << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+
+    while (std::getline(fIn, _strIn)) {
+        _strOut = ::parser(_strIn.c_str());
+        fOut << _strOut
+             << '\n';
+    }
+
+    fIn.close();
+    fOut.close();
 
     return 0;
 }
