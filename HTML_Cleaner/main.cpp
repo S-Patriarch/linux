@@ -71,14 +71,17 @@ int main(int argc, char* argv[])
     std::string _strIn { };
     std::string _strOut { };
 
-    std::ifstream fIn(_argString);
-    std::ofstream fOut("result.out", std::ios::app);
+    std::ifstream fIn;
+    fIn.open(_argString);
 
     if (!fIn.is_open()) {
         std::cerr << "E: Не могу открыть целевой файл."
                   << std::endl;
         std::exit(EXIT_FAILURE);
     }
+
+    std::ofstream fOut;
+    fOut.open("result.out", std::ios::app);
 
     while (std::getline(fIn, _strIn)) {
         _strOut = ::parser(_strIn.c_str());
