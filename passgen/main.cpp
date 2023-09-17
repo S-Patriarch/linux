@@ -22,6 +22,7 @@ typedef signed int s32_t;
 class PassGen
 {
 public:
+
     PassGen()  = default;
     ~PassGen() = default;
 
@@ -106,6 +107,7 @@ public:
     }
 
 private:
+
     s32_t m_numOfSmallChars;
     s32_t m_numOfBigChars;
     s32_t m_numOfNumbers;
