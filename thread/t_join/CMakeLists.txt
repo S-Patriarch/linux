@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.25)
+
+project(a.out)
+
+set(ts_VERSION_MAJOR 1)
+set(ts_VERSION_MINOR 0)
+set(ts_VERSION "${ts_VERSION_MAJOR}.${ts_VERSION_MINOR}")
+
+set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Debug)
+
+set(SOURCES
+   main.cc
+)
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+target_link_libraries(
+   ${PROJECT_NAME} PRIVATE
+   -pthread
+)
+
+set_target_properties(
+   ${PROJECT_NAME} PROPERTIES
+   CXX_STANDARD 17
+   CXX_STANDARD_REQUIRED ON
+)
+
