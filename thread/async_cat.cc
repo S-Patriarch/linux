@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
          c.get_ch();
          pr->set_value();
       });
-      int it {1};
+      unsigned int it {1};
       while (file.good()) {
          std::string line {};
          std::getline(file,line);
