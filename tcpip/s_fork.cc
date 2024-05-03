@@ -49,7 +49,7 @@ int main(int argc, char** argv)
                       << ", port " 
                       << ntohs(caddr.sin_port)
                       << '\n';
-            // иметация выполнения большой работы
+            // имитация выполнения большой работы
             std::this_thread::sleep_for(std::chrono::seconds(20));
             std::time_t ticks = std::time(NULL);
             std::string st = (std::string)std::ctime(&ticks);
