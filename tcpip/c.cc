@@ -12,8 +12,6 @@
 #include <cstring>
 #include <cstdlib>
 //------------------------------------------------------------------------------
-#define PORT   13
-//------------------------------------------------------------------------------
 using SA = struct sockaddr;
 ////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
@@ -29,7 +27,7 @@ int main(int argc, char** argv)
 
          std::memset(&addr,0,sizeof(addr));
          addr.sin_family = AF_INET;
-         addr.sin_port = htons(PORT);
+         addr.sin_port = htons(pl::mr::SERV_PORT);
          std::string s = args.at(1);
          if (inet_pton(AF_INET,s.c_str(),&addr.sin_addr)<=0) {
             std::cout << "E: inet_pton error for " << s << '\n';

@@ -1,7 +1,6 @@
 //
 // (c) 2024 S-Patriarch
 // Типичный параллельный сервер.
-// Сервер следует запускать под root, чтобы обрабатывался 13 порт.
 //
 #include "tcpip.hh"
 //------------------------------------------------------------------------------
@@ -13,9 +12,9 @@
 #include <chrono>
 #include <thread>
 //------------------------------------------------------------------------------
-#define PORT   13 // сервер времени и даты
-//------------------------------------------------------------------------------
 using SA = struct sockaddr;
+//------------------------------------------------------------------------------
+static std::uint64_t count {0};
 ////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
@@ -28,7 +27,7 @@ int main(int argc, char** argv)
 
       std::memset(&saddr,0,sizeof(saddr));
       saddr.sin_family = AF_INET;
-      saddr.sin_port = htons(PORT);
+      saddr.sin_port = htons(pl::mr::SERV_PORT);
       saddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
       tcp.tcp_bind(listenfd,(SA*)&saddr,sizeof(saddr));
@@ -40,17 +39,19 @@ int main(int argc, char** argv)
       for (;;) {
          socklen_t   len = sizeof(caddr);
          std::int32_t connfd = tcp.tcp_accept(listenfd,(SA*)&caddr,&len);
+         ++count;
          pid_t pid {};
          if ((pid = tcp.tcp_fork())==0) {
             tcp.tcp_close(listenfd); // дочерний процесс закрывает
                                      // прослушиваемый сокет
-            std::cout << "connection from " 
+            std::cout << count << '\t'
+                      << "connection from " 
                       << inet_ntop(AF_INET,&caddr.sin_addr,buff,sizeof(buff)) 
                       << ", port " 
                       << ntohs(caddr.sin_port)
                       << '\n';
-            // имитация выполнения большой работы
-            std::this_thread::sleep_for(std::chrono::seconds(20));
+            // иметация выполнения большой работы
+            std::this_thread::sleep_for(std::chrono::seconds(12));
             std::time_t ticks = std::time(NULL);
             std::string st = (std::string)std::ctime(&ticks);
             tcp.tcp_write(connfd,st.c_str(),st.size());
