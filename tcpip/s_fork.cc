@@ -9,8 +9,6 @@
 #include <ctime>
 #include <cstring>
 #include <cstdlib>
-#include <chrono>
-#include <thread>
 //------------------------------------------------------------------------------
 using SA = struct sockaddr;
 //------------------------------------------------------------------------------
@@ -50,8 +48,6 @@ int main(int argc, char** argv)
                       << ", port " 
                       << ntohs(caddr.sin_port)
                       << '\n';
-            // иметация выполнения большой работы
-            std::this_thread::sleep_for(std::chrono::seconds(12));
             std::time_t ticks = std::time(NULL);
             std::string st = (std::string)std::ctime(&ticks);
             tcp.tcp_write(connfd,st.c_str(),st.size());
