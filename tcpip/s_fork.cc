@@ -44,7 +44,7 @@ int main(int argc, char** argv)
          if ((pid = tcp.tcp_fork())==0) {
             tcp.tcp_close(listenfd); // дочерний процесс закрывает
                                      // прослушиваемый сокет
-            std::cout << count << '\t'
+            std::cout << count << " : "
                       << "connection from " 
                       << inet_ntop(AF_INET,&caddr.sin_addr,buff,sizeof(buff)) 
                       << ", port " 
