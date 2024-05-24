@@ -33,7 +33,7 @@ std::int32_t main(int argc, char** argv)
    }
    else if (args.size()!=2) {
       std::cout << "Usage: upd [<options>]\n\n"
-                << "upd is a assistand for updating and cleaning the system"
+                << "upd is a assistand for updating and cleaning the system "
                 << "of the family Debian Linux\n"
                 << "for people with very little experience in OS GNU/Linux.\n\n"
                 << "Options:\n"
