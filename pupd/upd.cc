@@ -2,11 +2,12 @@
 // (c) 2024 S-Patriarch
 // Обновление системы GNU/Linux семейства Debian Linux.
 //
-#include <iostream>
-#include <vector>
 #include <cstdlib>
+#include <cstdint>
+#include <vector>
+#include <iostream>
 ////////////////////////////////////////////////////////////////////////////////
-int main(int argc, char** argv)
+std::int32_t main(int argc, char** argv)
 {
    std::vector<std::string> args(argv,argv+argc);
    
@@ -31,17 +32,16 @@ int main(int argc, char** argv)
       }
    }
    else if (args.size()!=2) {
-      std::cout << "Usage: upd [OPTIONS]\n\n"
-                << "Assistand for updating and cleaning the system of the\n"
-                << "family Debian Linux for people with very little\n"
+      std::cout << "Usage: upd [<options>]\n\n"
+                << "upd is a assistand for updating and cleaning the system\n"
+                << "of the family Debian Linux for people with very little\n"
                 << "experience in OS GNU/Linux.\n\n"
-                << "Option  Long option  Meaning\n"
-                << "-f      --full       Updating the system to the latest "
-                << "version followed by cleaning\n"
-                << "-u      --updating   Updating the system to the latest "
-                << "version\n"
-                << "-c      --cleaning   System cleaning\n\n";
+                << "Options:\n"
+                << "  -f  --full      Updating the system to the latest "
+                << "version followed by cleaning.\n"
+                << "  -u  --updating  Updating the system to the latest "
+                << "version.\n"
+                << "  -c  --cleaning  System cleaning.\n\n";
    }
-   return 0;
+   std::exit(EXIT_SUCCESS);
 }
-
