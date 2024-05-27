@@ -27,11 +27,11 @@ void sig_chld(std::int32_t signo)
    // блокироваться, если существует выполняемые дочерние процессы,
    // которые еще не завершились
    while ((pid = waitpid(-1,&stat,WNOHANG))>0) {
-      std::cout << "child " << pid << " terminated\n";
+      std::cout << "W: child " << pid << " terminated\n";
    }
 }
 ////////////////////////////////////////////////////////////////////////////////
-int main(int argc, char** argv)
+std::int32_t main(int argc, char** argv)
 {
    try {
       pl::TCPip            tcp;
@@ -50,7 +50,7 @@ int main(int argc, char** argv)
 
       tcp.tcp_signal(SIGCHLD,sig_chld);
 
-      std::cout << "The server is running...\n";
+      std::cout << "W: the server is running...\n";
 
       char buff[pl::mr::MAXLINE];
       for (;;) {
@@ -60,14 +60,14 @@ int main(int argc, char** argv)
             if (errno==EINTR) continue; 
             else {
                char errmsg[pl::mr::MAXLINE];
-               strcpy(errmsg,"E: Accept error - ");
+               strcpy(errmsg,"E: accept error - ");
                char* s = std::strerror(errno);
                throw pl::Exception(strcat(errmsg,s));
             }
          }
          std::cout << '[' << ++count << "] connection from " 
                    << inet_ntop(AF_INET,&caddr.sin_addr,buff,sizeof(buff)) 
-                   << '\n';
+                   << ':' << ntohs(caddr.sin_port) << '\n';
 
          pid_t pid {};
          if ((pid = tcp.tcp_fork())==0) {
@@ -81,7 +81,7 @@ int main(int argc, char** argv)
                else break;
             }
             tcp.tcp_close(connfd); 
-            return 0; 
+            std::exit(EXIT_SUCCESS);
          }
 
          tcp.tcp_close(connfd); 
@@ -90,6 +90,5 @@ int main(int argc, char** argv)
    catch (std::exception& ex) {
       std::cout << ex.what() << '\n';
    }
-   return 0;
+   std::exit(EXIT_SUCCESS);
 }
-
