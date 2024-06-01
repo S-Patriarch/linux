@@ -31,7 +31,7 @@ void sig_chld(std::int32_t signo)
    }
 }
 ////////////////////////////////////////////////////////////////////////////////
-std::int32_t main(int argc, char** argv)
+std::int32_t main(std::int32_t argc, char** argv)
 {
    try {
       pl::TCPip            tcp;
