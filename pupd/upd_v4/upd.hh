@@ -5,18 +5,19 @@
 
 namespace upd {
   class UpDate {
-    std::string _locale; // принимает значение en или ru
-    int _packageManager; // менеджер пакетов установленный в системе
-
-    enum class pms {
-      apt     = 0, // for Debian, Ubuntu
-      dnf_yum = 1, // for Fedora, RHEL, CentOS
-      pacman  = 3, // for Arch
-      zypper  = 4  // for openSUSE
+    enum class pm {
+      NDEF    = 0,
+      APT     = 1, // for Debian, Ubuntu
+      DNF_YUM = 2, // for Fedora, RHEL, CentOS
+      PACMAN  = 3, // for Arch
+      ZYPPER  = 4  // for openSUSE
     };
 
+    std::string _locale; // принимает значение en или ru
+    pm _packageManager;  // менеджер пакетов установленный в системе
+
     auto is_locale_available(const std::string &) -> bool;
-    auto detect_package_manager() -> int;
+    auto detect_package_manager() -> pm;
 
   public:
     UpDate();
