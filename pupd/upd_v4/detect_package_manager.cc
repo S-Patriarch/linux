@@ -6,12 +6,14 @@ using namespace std;
 
 namespace upd {
   auto UpDate::detect_package_manager()
-    -> pm
+    -> PackageManager
   {
-    pm res {};
+    PackageManager res {};
 
     ifstream file("/etc/os-release");
-    if (!file.is_open()) {res=pm::NDEF;}
+    if (!file.is_open()) {
+      res = PackageManager::ndef;
+    }
     else {
       string line {};
       string id {};
@@ -27,11 +29,21 @@ namespace upd {
       }
       file.close();
 
-      if (id=="debian" || id=="ubuntu") {res=pm::APT;}
-      else if (id=="fedora" || id=="rhel" || id=="centos") {res=pm::DNF_YUM;}
-      else if (id=="arch") {res=pm::PACMAN;}
-      else if (id=="opensuse") {res=pm::ZYPPER;}
-      else {res=pm::NDEF;}
+      if (id=="debian" || id=="ubuntu") {
+        res = PackageManager::apt;
+      }
+      else if (id=="fedora" || id=="rhel" || id=="centos") {
+        res = PackageManager::dnf_yum;
+      }
+      else if (id=="arch") {
+        res = PackageManager::pacman;
+      }
+      else if (id=="opensuse") {
+        res = PackageManager::zypper;
+      }
+      else {
+        res = PackageManager::ndef;
+      }
     }
 
     return res;
