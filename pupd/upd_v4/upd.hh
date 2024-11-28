@@ -2,22 +2,25 @@
 #define UPD_HH
 
 #include <string>
+#include <unordered_map>
 
 namespace upd {
   class UpDate {
-    enum class PackageManager {
-      ndef    = 0,
-      apt     = 1, // for Debian, Ubuntu
-      dnf_yum = 2, // for Fedora, RHEL, CentOS
-      pacman  = 3, // for Arch
-      zypper  = 4  // for openSUSE
+    std::unordered_map<std::string,std::string> ospm {
+      {"debian",   "apt"},
+      {"ubuntu",   "apt"},
+      {"fedora",   "dnf"},
+      {"rhel",     "dnf"},
+      {"centos",   "dnf"},
+      {"arch",     "pacman"},
+      {"opensuse", "zypper"}
     };
 
-    std::string _locale;            // принимает значение en или ru
-    PackageManager _packageManager; // менеджер пакетов установленный в системе
+    std::string _locale;
+    std::string _packageManager;
 
     auto is_locale_available(const std::string &) -> bool;
-    auto detect_package_manager() -> PackageManager;
+    auto detect_package_manager() -> std::string;
 
   public:
     UpDate();
@@ -25,6 +28,7 @@ namespace upd {
 
     auto logo() -> void;
     auto help() -> void;
+    auto command_generator() -> void;
   };
 }
 

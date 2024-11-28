@@ -12,6 +12,7 @@ add_executable(upd
   detect_package_manager.cc
   logo.cc
   help.cc
+  command_generator.cc
 )
 
 install(TARGETS upd

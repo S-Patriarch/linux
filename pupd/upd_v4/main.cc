@@ -9,16 +9,17 @@
 #include "pl/conio"
 #include "upd.hh"
 
-using namespace std;
-
 auto main(int argc, char **argv)
   -> int
 {
-  vector<string> args(argv, argv+argc);
-  auto pUpDate = make_unique<upd::UpDate>();
+  using std::cout;
+  using std::endl;
+
+  std::vector<std::string> args(argv, argv+argc);
+  auto pUpDate = std::make_unique<upd::UpDate>();
 
   if (args.size()==2) {
-    string option {args.at(1)};
+    std::string option {args.at(1)};
   }
   else {
     cout << pl::mr::clrscr;
@@ -28,5 +29,5 @@ auto main(int argc, char **argv)
     cout << endl;
   }
 
-  exit(0);
+  std::exit(0);
 }

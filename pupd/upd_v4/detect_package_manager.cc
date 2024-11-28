@@ -1,48 +1,38 @@
 #include <fstream>
 #include <algorithm>
+#include <stdexcept>
 #include "upd.hh"
-
-using namespace std;
 
 namespace upd {
   auto UpDate::detect_package_manager()
-    -> PackageManager
+    -> std::string
   {
-    PackageManager res {};
+    std::string res {};
 
-    ifstream file("/etc/os-release");
+    std::ifstream file("/etc/os-release");
     if (!file.is_open()) {
-      res = PackageManager::ndef;
+      res = "";
     }
     else {
-      string line {};
-      string id {};
+      std::string line {};
+      std::string id {};
 
-      while (getline(file,line)) {
+      while (std::getline(file,line)) {
         if (file.eof()) {break;}
         else {
           if (line.find("ID=")==0) {
             id = line.substr(3);
-            id.erase(remove(id.begin(),id.end(),' '), id.end());
+            id.erase(std::remove(id.begin(),id.end(),'"'), id.end());
           }
         }
       }
       file.close();
 
-      if (id=="debian" || id=="ubuntu") {
-        res = PackageManager::apt;
+      try {
+        res = ospm.at(id);
       }
-      else if (id=="fedora" || id=="rhel" || id=="centos") {
-        res = PackageManager::dnf_yum;
-      }
-      else if (id=="arch") {
-        res = PackageManager::pacman;
-      }
-      else if (id=="opensuse") {
-        res = PackageManager::zypper;
-      }
-      else {
-        res = PackageManager::ndef;
+      catch (const std::out_of_range &e) {
+        res = "";
       }
     }
 

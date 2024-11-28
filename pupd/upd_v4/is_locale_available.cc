@@ -1,25 +1,24 @@
 #include <array>
 #include <memory>
+#include <cstdio>
 #include "upd.hh"
 
-using namespace std;
-
 namespace upd {
-  auto UpDate::is_locale_available(const string &loc)
+  auto UpDate::is_locale_available(const std::string &loc)
     -> bool
   {
-    array<char,128> buf;
-    string res {};
+    std::array<char,128> buf;
+    std::string res {};
 
     // выполняем команду locale -a и получаем результат
-    shared_ptr<FILE> pipe(popen("locale -a","r"), pclose);
+    std::shared_ptr<FILE> pipe(popen("locale -a","r"), pclose);
     if (!pipe) return false;
 
     // читаем вывод команды
-    while (fgets(buf.data(), buf.size(), pipe.get()) != nullptr)
+    while (std::fgets(buf.data(), buf.size(), pipe.get()) != nullptr)
       res += buf.data();
 
     // проверяем, содержится ли нужная локаль в выводе
-    return (res.find(loc) != string::npos);
+    return (res.find(loc) != std::string::npos);
   }
 }
