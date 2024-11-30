@@ -3,6 +3,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 namespace upd {
   class UpDate {
@@ -26,9 +27,12 @@ namespace upd {
     UpDate();
     ~UpDate();
 
+    auto get_locale() -> std::string const;
+    auto get_package_manager() -> std::string const;
+
     auto logo() -> void;
     auto help() -> void;
-    auto command_generator() -> void;
+    auto command_generator(const std::string &) -> std::vector<std::string>;
   };
 }
 

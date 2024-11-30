@@ -7,22 +7,27 @@ namespace upd {
   auto UpDate::detect_package_manager()
     -> std::string
   {
-    std::string res {};
+    using std::string;
+    using std::ifstream;
+    using std::getline;
+    using std::remove;
 
-    std::ifstream file("/etc/os-release");
+    string res {};
+
+    ifstream file("/etc/os-release");
     if (!file.is_open()) {
       res = "";
     }
     else {
-      std::string line {};
-      std::string id {};
+      string line {};
+      string id {};
 
-      while (std::getline(file,line)) {
+      while (getline(file,line)) {
         if (file.eof()) {break;}
         else {
           if (line.find("ID=")==0) {
             id = line.substr(3);
-            id.erase(std::remove(id.begin(),id.end(),'"'), id.end());
+            id.erase(remove(id.begin(),id.end(),'"'), id.end());
           }
         }
       }

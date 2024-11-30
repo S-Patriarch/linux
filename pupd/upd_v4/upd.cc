@@ -12,4 +12,12 @@ namespace upd {
   }
 
   UpDate::~UpDate() {}
+
+  auto UpDate::get_locale()
+    -> std::string const
+  {return _locale;}
+
+  auto UpDate::get_package_manager()
+    -> std::string const
+  {return _packageManager;}
 }
