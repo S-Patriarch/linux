@@ -24,12 +24,12 @@ auto main(int argc, char **argv)
 
   if (args.size()==2) {
 
-    if (pUpDate->get_package_manager()!="") {
+    if (pUpDate->packageManager!="") {
       string option {args.at(1)};
 
-      if (option=="-f" || option=="--full"     ||
-          option=="-u" || option=="--updating" ||
-          option=="-c" || option=="--cleaning") {
+      if (option=="-f" || option=="--full"   ||
+          option=="-u" || option=="--update" ||
+          option=="-c" || option=="--clean") {
         vector<string> commands = pUpDate->command_generator(option);
         cout << pl::mr::clrscr;
         pUpDate->logo();
@@ -37,9 +37,10 @@ auto main(int argc, char **argv)
         for (auto &command : commands) {
           system(command.c_str());
         }
+        cout << endl;
       }
       else {
-        if (pUpDate->get_locale()=="ru") {
+        if (pUpDate->locale=="ru") {
           cout
             << "W: опция командной строки ["
             << option
@@ -56,9 +57,9 @@ auto main(int argc, char **argv)
       }
     }
     else {
-      if (pUpDate->get_locale()=="ru") {
+      if (pUpDate->locale=="ru") {
         cout
-          << "W: пакетный менеджер не известен\n"
+          << "W: пакетный менеджер неизвестен\n"
           << endl;
       }
       else {

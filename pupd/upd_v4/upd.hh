@@ -1,5 +1,5 @@
 #ifndef UPD_HH
-#define UPD_HH
+#define UPD_HH 3
 
 #include <string>
 #include <unordered_map>
@@ -17,18 +17,15 @@ namespace upd {
       {"opensuse", "zypper"}
     };
 
-    std::string _locale;
-    std::string _packageManager;
-
     auto is_locale_available(const std::string &) -> bool;
     auto detect_package_manager() -> std::string;
 
   public:
+    std::string locale {};
+    std::string packageManager {};
+
     UpDate();
     ~UpDate();
-
-    auto get_locale() -> std::string const;
-    auto get_package_manager() -> std::string const;
 
     auto logo() -> void;
     auto help() -> void;
