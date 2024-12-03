@@ -24,7 +24,7 @@ auto main(int argc, char **argv)
 
   if (args.size()==2) {
 
-    if (pUpDate->packageManager!="") {
+    if (pUpDate->m_packageManager!="") {
       string option {args.at(1)};
 
       if (option=="-f" || option=="--full"   ||
@@ -40,7 +40,7 @@ auto main(int argc, char **argv)
         cout << endl;
       }
       else {
-        if (pUpDate->locale=="ru") {
+        if (pUpDate->m_locale=="ru") {
           cout
             << "W: опция командной строки ["
             << option
@@ -57,7 +57,7 @@ auto main(int argc, char **argv)
       }
     }
     else {
-      if (pUpDate->locale=="ru") {
+      if (pUpDate->m_locale=="ru") {
         cout
           << "W: пакетный менеджер неизвестен\n"
           << endl;

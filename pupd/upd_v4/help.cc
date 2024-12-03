@@ -8,7 +8,7 @@ namespace upd {
     using std::cout;
     using std::endl;
 
-    if (locale=="ru") {
+    if (m_locale=="ru") {
       cout
         << "Использование: upd [параметры]\n\n"
         << "upd - утилита командной строки.\n"

@@ -5,10 +5,10 @@ namespace upd {
   UpDate::UpDate()
   {
     bool isLocaleRU = is_locale_available("ru_RU");
-    if (isLocaleRU) locale = "ru";
-    else locale = "en";
+    if (isLocaleRU) m_locale = "ru";
+    else m_locale = "en";
 
-    packageManager = detect_package_manager();
+    m_packageManager = detect_package_manager();
   }
 
   UpDate::~UpDate() {}

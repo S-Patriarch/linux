@@ -21,8 +21,8 @@ namespace upd {
     auto detect_package_manager() -> std::string;
 
   public:
-    std::string locale {};
-    std::string packageManager {};
+    std::string m_locale {};
+    std::string m_packageManager {};
 
     UpDate();
     ~UpDate();

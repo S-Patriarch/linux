@@ -6,72 +6,30 @@ namespace upd {
   {
     std::vector<std::string> commands;
 
-    if (packageManager == "apt") {
+    if (m_packageManager=="apt") {
       if (option=="-f" || option=="--full") {
-        commands.push_back("sudo apt update && sudo apt full-upgrade -y");
-        commands.push_back("sudo apt autoremove -y");
-        commands.push_back("sudo apt autoclean -y");
-        commands.push_back("sudo apt clean -y");
+        commands.emplace_back("sudo apt update && sudo apt full-upgrade -y");
+        commands.emplace_back("sudo apt autoremove -y");
+        commands.emplace_back("sudo apt autoclean -y");
+        commands.emplace_back("sudo apt clean -y");
       }
       if (option=="-c" || option=="--clean") {
-        commands.push_back("sudo apt autoremove -y");
-        commands.push_back("sudo apt autoclean -y");
-        commands.push_back("sudo apt clean -y");
+        commands.emplace_back("sudo apt autoremove -y");
+        commands.emplace_back("sudo apt autoclean -y");
+        commands.emplace_back("sudo apt clean -y");
       }
       if (option=="-u" || option=="--update") {
-        commands.push_back("sudo apt update && sudo apt full-upgrade -y");
+        commands.emplace_back("sudo apt update && sudo apt full-upgrade -y");
       }
     }
 
-    if (packageManager == "dnf") {
-      if (option=="-f" || option=="--full") {
-        //commands.push_back("sudo apt update && sudo apt full-upgrade -y");
-        //commands.push_back("sudo apt autoremove -y");
-        //commands.push_back("sudo apt autoclean -y");
-        //commands.push_back("sudo apt clean -y");
-      }
-      if (option=="-c" || option=="--clean") {
-        //commands.push_back("sudo apt autoremove -y");
-        //commands.push_back("sudo apt autoclean -y");
-        //commands.push_back("sudo apt clean -y");
-      }
-      if (option=="-u" || option=="--update") {
-        //commands.push_back("sudo apt update && sudo apt full-upgrade -y");
-      }
+    if (m_packageManager=="dnf") {
     }
 
-    if (packageManager == "pacman") {
-      if (option=="-f" || option=="--full") {
-        //commands.push_back("sudo apt update && sudo apt full-upgrade -y");
-        //commands.push_back("sudo apt autoremove -y");
-        //commands.push_back("sudo apt autoclean -y");
-        //commands.push_back("sudo apt clean -y");
-      }
-      if (option=="-c" || option=="--clean") {
-        //commands.push_back("sudo apt autoremove -y");
-        //commands.push_back("sudo apt autoclean -y");
-        //commands.push_back("sudo apt clean -y");
-      }
-      if (option=="-u" || option=="--update") {
-        //commands.push_back("sudo apt update && sudo apt full-upgrade -y");
-      }
+    if (m_packageManager=="pacman") {
     }
 
-    if (packageManager == "zypper") {
-      if (option=="-f" || option=="--full") {
-        //commands.push_back("sudo apt update && sudo apt full-upgrade -y");
-        //commands.push_back("sudo apt autoremove -y");
-        //commands.push_back("sudo apt autoclean -y");
-        //commands.push_back("sudo apt clean -y");
-      }
-      if (option=="-c" || option=="--clean") {
-        //commands.push_back("sudo apt autoremove -y");
-        //commands.push_back("sudo apt autoclean -y");
-        //commands.push_back("sudo apt clean -y");
-      }
-      if (option=="-u" || option=="--update") {
-        //commands.push_back("sudo apt update && sudo apt full-upgrade -y");
-      }
+    if (m_packageManager=="zypper") {
     }
 
     return commands;
