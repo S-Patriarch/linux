@@ -1,11 +1,10 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.25)
 
-project(upd LANGUAGES CXX)
+project(upd)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Release)
 
-add_executable(upd
+set(SOURCES
   main.cc
   upd.cc
   is_locale_available.cc
@@ -15,5 +14,10 @@ add_executable(upd
   command_generator.cc
 )
 
-install(TARGETS upd
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+set_target_properties(
+  ${PROJECT_NAME} PROPERTIES
+  CXX_STANDARD 20
+  CXX_STANDARD_REQUIRED ON
+)
