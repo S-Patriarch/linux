@@ -26,7 +26,6 @@ auto main(int argc, char **argv)
 
   vector<string> args(argv, argv+argc);
   auto pUpDate = std::make_unique<upd::UpDate>();
-  auto pTimer  = std::make_unique<pl::Timer>();
 
   if (args.size()==2) {
 
@@ -40,11 +39,14 @@ auto main(int argc, char **argv)
         cout << pl::mr::clrscr;
         pUpDate->logo();
         cout << endl;
+
+        auto pTimer = std::make_unique<pl::Timer>();
         pTimer->start();
         for (auto &command : commands) {
           system(command.c_str());
         }
         pTimer->stop();
+
         cout << endl;
         if (pUpDate->m_locale=="ru") {
           cout
