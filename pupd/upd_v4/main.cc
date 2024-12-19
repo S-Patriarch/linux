@@ -9,8 +9,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <memory>
-#include "pl/conio"
-#include "pl/timer"
+#include "pl/pl.conio"
+#include "pl/pl.timer"
 #include "upd.hh"
 
 auto main(int argc, char **argv)

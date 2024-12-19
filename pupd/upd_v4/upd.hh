@@ -21,14 +21,14 @@ namespace upd {
     auto detect_package_manager() -> std::string;
 
   public:
-    std::string m_locale {};
+    std::string m_locale {"en"};
     std::string m_packageManager {};
 
     UpDate();
     ~UpDate();
 
-    auto logo() -> void;
-    auto help() -> void;
+    auto logo() -> void const;
+    auto help() -> void const;
     auto command_generator(const std::string &) -> std::vector<std::string>;
   };
 }

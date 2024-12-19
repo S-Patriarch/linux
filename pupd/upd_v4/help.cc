@@ -3,7 +3,7 @@
 
 namespace upd {
   auto UpDate::help()
-    -> void
+    -> void const
   {
     using std::cout;
     using std::endl;
