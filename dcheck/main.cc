@@ -25,6 +25,8 @@ int main(int argc, char **argv)
         dch.logo();
         cout << endl;
 
+        dch.read_configuration();
+
         pl::ios ios_;
 
         std::fstream fs;

@@ -64,7 +64,7 @@ namespace dcheck {
 
             // устанавливаем таймауты
             struct timeval tv;
-            tv.tv_sec = m_timeout;
+            tv.tv_sec = 5;
             tv.tv_usec = 0;
             setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
             setsockopt(sockfd, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
