@@ -11,7 +11,7 @@
 namespace dcheck {
 
     auto DomainChecker::domain_checker(const char *hostname)
-        -> bool
+        -> bool const
         /*
          * Работа метода:
          * 1. Получение информации об адресе:

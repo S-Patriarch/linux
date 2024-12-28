@@ -13,7 +13,7 @@ namespace dcheck {
     DomainChecker::~DomainChecker() {}
 
     auto DomainChecker::set(time_t timeout, int resfile)
-        -> void const
+        -> void
     {
         m_timeout = timeout;
         m_resfile = resfile;
