@@ -10,6 +10,6 @@ namespace dcheck {
         if (islocaleru) m_locale = "ru";
     }
 
-    DomainChecker::~DomainChecker() {}
+    DomainChecker::~DomainChecker() noexcept {}
 
 }

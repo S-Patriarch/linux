@@ -20,22 +20,26 @@ int main(int argc, char **argv)
     std::vector<std::string> args(argv, argv+argc);
     dcheck::DomainChecker dch;
 
-    if (args.size()==2) {
+    if (args.size()>=2) {
         cout << pl::mr::clrscr;
         dch.logo();
         cout << endl;
 
-        dch.read_configuration();
+        if (args.size()==3) {
+            std::string argoption {args[2]};
+            if (argoption=="-r") dch.m_resfile = 1;
+        }
 
         pl::ios ios_;
 
         std::fstream fs;
-        fs.open(args[1], std::ios::in);
+        std::string arglistfile {args[1]};
+        fs.open(arglistfile, std::ios::in);
 
         std::string message {};
         if (!fs.is_open()) {
-            if (dch.m_locale=="ru") message = "Файл "+args[1]+" не открыт.";
-            if (dch.m_locale=="en") message = args[1]+" file is not open.";
+            if (dch.m_locale=="ru") message = "Файл "+arglistfile+" не открыт.";
+            if (dch.m_locale=="en") message = arglistfile+" file is not open.";
             ios_.mout(message, 2);
         }
         else {
@@ -61,8 +65,8 @@ int main(int argc, char **argv)
                 }
             }
             else {
-                if (dch.m_locale=="ru") message = "Файл "+args[1]+" пуст.";
-                if (dch.m_locale=="en") message = args[1]+" file is empty.";
+                if (dch.m_locale=="ru") message = "Файл "+arglistfile+" пуст.";
+                if (dch.m_locale=="en") message = arglistfile+" file is empty.";
                 ios_.mout(message, 2);
             }
             fs.close();
