@@ -8,13 +8,14 @@ set(SOURCES
     main.cc
     dcheck.cc
     logo.cc
+    help.cc
     domain_checker.cc
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 set_target_properties(
-  ${PROJECT_NAME} PROPERTIES
-  CXX_STANDARD 20
-  CXX_STANDARD_REQUIRED ON
+    ${PROJECT_NAME} PROPERTIES
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED ON
 )

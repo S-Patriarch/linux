@@ -6,8 +6,6 @@
 namespace dcheck {
 
     class DomainChecker {
-        std::string m_fileresult {"dcheck.res"};
-
     public:
         DomainChecker();
         ~DomainChecker() noexcept;
@@ -18,6 +16,7 @@ namespace dcheck {
         auto domain_checker(const char *) -> bool const;
 
         std::string m_locale {"en"};
+        std::string m_fileresult {"dcheck.res"};
         int m_resfile {0};
     };
 
