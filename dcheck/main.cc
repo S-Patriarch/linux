@@ -130,7 +130,14 @@ int main(int argc, char **argv)
                 << message
                 << endl;
 
-            // открыть файл, отписать результат, закрыть файл
+            std::fstream fsres;
+            fsres.open(dch->m_fileresult, std::ios::out);
+            for (const auto &itr : v) {
+                fsres
+                    << itr
+                    << endl;
+            }
+            fsres.close();
 
             if (dch->m_locale=="ru") message = "Результат работы отписан в файл : ";
             if (dch->m_locale=="en") message = "The result of the work is written to the file : ";
