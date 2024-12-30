@@ -68,6 +68,7 @@ int main(int argc, char **argv)
         cout << endl;
 
         auto ios_ = std::make_unique<pl::ios>();
+        std::vector<string> v;
 
         std::fstream fs;
         fs.open(arglistfile, std::ios::in);
@@ -85,18 +86,30 @@ int main(int argc, char **argv)
 
                 string sline {};
                 string scolor {};
+                string s {};
                 while (std::getline(fs, sline)) {
                     if (fs.eof()) break;
                     else if (sline=="") continue;
                     else {
                         bool isrescheck = dch->domain_checker(sline.c_str());
-                        if (isrescheck) scolor = "[  \033[32mOK\033[0m  ]";
-                        else scolor = "[\033[31mFAILED\033[0m]";
+                        if (isrescheck) {
+                            scolor = "[  \033[32mOK\033[0m  ]";
+                            if (dch->m_resfile==1) s = "[+] ";
+                        }
+                        else {
+                            scolor = "[\033[31mFAILED\033[0m]";
+                            if (dch->m_resfile==1) s = "[-] ";
+                        }
                         cout
                             << scolor
                             << ' '
                             << sline
                             << endl;
+
+                        if (dch->m_resfile==1) {
+                            s += sline;
+                            v.emplace_back(s);
+                        }
                     }
                 }
             }
@@ -109,11 +122,20 @@ int main(int argc, char **argv)
         }
 
         if (dch->m_resfile==1) {
+            if (dch->m_locale=="ru") message = "Отписываю результат...";
+            if (dch->m_locale=="en") message = "I'm writing off the result...";
+            cout
+                << '\n'
+                << "\033[33mW:\033[0m "
+                << message
+                << endl;
+
+            // открыть файл, отписать результат, закрыть файл
+
             if (dch->m_locale=="ru") message = "Результат работы отписан в файл : ";
             if (dch->m_locale=="en") message = "The result of the work is written to the file : ";
             cout
-                << '\n'
-                << "W: "
+                << "\033[33mW:\033[0m "
                 << message
                 << dch->m_fileresult
                 << endl;
