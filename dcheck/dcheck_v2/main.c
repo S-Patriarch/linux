@@ -56,9 +56,9 @@ int main(int argc, char **argv)
                         else {
                                 bool res_check = dch_domain_checker(buf);
                                 if (res_check) {
-                                        p_strcpy(str_out, s_ok, sizeof(s_ok));
+                                        p_strcpy(str_out, s_ok);
                                 } else {
-                                        p_strcpy(str_out, s_fl, sizeof(s_fl));
+                                        p_strcpy(str_out, s_fl);
                                 }
 
                                 printf("%s %s\n", str_out, buf);
