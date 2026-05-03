@@ -2,7 +2,7 @@ int
 upd_detect_package_manager(struct upd_s *upd) P_NOEXCEPT 
 {
         FILE *file = fopen("/etc/os-release", "r");
-        if (file == NULL) return(P_FAILURE);
+        if (file == NULL) return (P_FAILURE);
 
         char line[256];
         while (fgets(line, sizeof(line), file)) {
@@ -28,42 +28,42 @@ upd_detect_package_manager(struct upd_s *upd) P_NOEXCEPT
                         if (strcmp(id_value, "debian") == 0) {
                                 fclose(file);
                                 p_strcpy(upd->upd_pm, "apt");
-                                return(P_SUCCESS);
+                                return (P_SUCCESS);
                         }
                         if (strcmp(id_value, "ubuntu") == 0) {
                                 fclose(file);
                                 p_strcpy(upd->upd_pm, "apt");
-                                return(P_SUCCESS);
+                                return (P_SUCCESS);
                         }
                         if (strcmp(id_value, "fedora") == 0) {
                                 fclose(file);
                                 p_strcpy(upd->upd_pm, "dnf");
-                                return(P_SUCCESS);
+                                return (P_SUCCESS);
                         }
                         if (strcmp(id_value, "rhel") == 0) {
                                 fclose(file);
                                 p_strcpy(upd->upd_pm, "dnf");
-                                return(P_SUCCESS);
+                                return (P_SUCCESS);
                         }
                         if (strcmp(id_value, "centos") == 0) {
                                 fclose(file);
                                 p_strcpy(upd->upd_pm, "dnf");
-                                return(P_SUCCESS);
+                                return (P_SUCCESS);
                         }
                         if (strcmp(id_value, "arch") == 0) {
                                 fclose(file);
                                 p_strcpy(upd->upd_pm, "pacman");
-                                return(P_SUCCESS);
+                                return (P_SUCCESS);
                         }
                         if (strcmp(id_value, "opensuse") == 0) {
                                 fclose(file);
                                 p_strcpy(upd->upd_pm, "zypper");
-                                return(P_SUCCESS);
+                                return (P_SUCCESS);
                         }
                 }
         }
 
         fclose(file);
-        return(P_FAILURE);
+        return (P_FAILURE);
 }
 

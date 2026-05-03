@@ -1,12 +1,12 @@
-/* (C) 2026, S-Patriarch
+/* Copyright (C) 2026, S-Patriarch
    upd - утилита командной строки.
    Она предоставляет команды для обновления и очистке системы после обновления.
    upd работает с такими менеджерами пакетов, как apt, dnf, pacman, zypper.  */
 
 #include <ph.h>
 #include <plc/plc.h>
-#include "upd.h"
 #include "version.h"
+#include "upd.h"
 
 #include "upd_logo.c"
 #include "upd_help.c"
