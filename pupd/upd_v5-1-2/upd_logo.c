@@ -14,7 +14,7 @@ upd_logo(void) P_NOEXCEPT
                "      /_/\n"
                "    \u2594\u2594\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\n"
                "    \u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580");
-        printf("   v%d.%d.%d\n", UPD_VERSION_MAJOR, UPD_VERSION_PATCHLEVEL, UPD_VERSION_SUBLEVEL);
+        printf("   v%s\n", UPD_VERSION_STRING);
         printf("     S-Patriarch    github.com/S-Patriarch/linux/tree/main/pupd\n");
 }
 
