@@ -36,7 +36,7 @@ main(int argc, char *argv[])
                                        "\033[93m");
                                 p_mout("No internet connection\n\n", mess_e, 
                                        NULL, "\033[93m");
-                                exit(P_FAILURE);
+                                exit(P_EXIT_FAILURE);
                         }
 
                         p_mout("[  OK  ]\n\n", mess_n, NULL, "\033[93m");
@@ -45,7 +45,7 @@ main(int argc, char *argv[])
                 struct upd_s upd;
 
                 int res = upd_detect_package_manager(&upd);
-                if (res == P_FAILURE) {
+                if (res == -1) {
                         p_mout("I can't identify the OS\n\n", mess_w, NULL, 
                                "\033[93m");
                 } else {
@@ -87,6 +87,6 @@ main(int argc, char *argv[])
                 putchar((int)'\n');
         }
 
-        exit(P_SUCCESS);
+        exit(P_EXIT_SUCCESS);
 }
 

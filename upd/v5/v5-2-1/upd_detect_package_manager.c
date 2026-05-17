@@ -3,10 +3,10 @@
 int 
 upd_detect_package_manager(struct upd_s *upd) P_NOEXCEPT 
 {
-        int     iret = P_FAILURE;
+        int     iret = -1;
         FILE    *file = fopen("/etc/os-release", "r");
 
-        if (file == NULL) return(P_FAILURE);
+        if (file == NULL) return(-1);
 
         char line[256];
         while (fgets(line, sizeof(line), file)) {
@@ -31,37 +31,37 @@ upd_detect_package_manager(struct upd_s *upd) P_NOEXCEPT
 
                         if (strcmp(id_value, "debian") == 0) {
                                 p_strcpy(upd->upd_pm, "apt");
-                                iret = P_SUCCESS;
+                                iret = 0;
                                 goto ret;
                         }
                         if (strcmp(id_value, "ubuntu") == 0) {
                                 p_strcpy(upd->upd_pm, "apt");
-                                iret = P_SUCCESS;
+                                iret = 0;
                                 goto ret;
                         }
                         if (strcmp(id_value, "fedora") == 0) {
                                 p_strcpy(upd->upd_pm, "dnf");
-                                iret = P_SUCCESS;
+                                iret = 0;
                                 goto ret;
                         }
                         if (strcmp(id_value, "rhel") == 0) {
                                 p_strcpy(upd->upd_pm, "dnf");
-                                iret = P_SUCCESS;
+                                iret = 0;
                                 goto ret;
                         }
                         if (strcmp(id_value, "centos") == 0) {
                                 p_strcpy(upd->upd_pm, "dnf");
-                                iret = P_SUCCESS;
+                                iret = 0;
                                 goto ret;
                         }
                         if (strcmp(id_value, "arch") == 0) {
                                 p_strcpy(upd->upd_pm, "pacman");
-                                iret = P_SUCCESS;
+                                iret = 0;
                                 goto ret;
                         }
                         if (strcmp(id_value, "opensuse") == 0) {
                                 p_strcpy(upd->upd_pm, "zypper");
-                                iret = P_SUCCESS;
+                                iret = 0;
                                 goto ret;
                         }
                 }
