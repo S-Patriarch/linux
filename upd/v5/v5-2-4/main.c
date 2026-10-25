@@ -28,19 +28,19 @@ main(int argc, char *argv[])
                     strcmp(argv[1], "--full") == 0 ||
                     strcmp(argv[1], "--update") == 0) {
                         p_mout("Checking network... ", mess_w, NULL, 
-                               "\033[93m");
+                               COLOR);
                         fflush(stdout);
 
                         unsigned char is_check = upd_network_check();
                         if (is_check == P_FALSE) {
                                 p_mout("\t\t[ FAILED ]\n", mess_n, NULL, 
-                                       "\033[93m");
+                                       COLOR);
                                 p_mout("No internet connection\n\n", mess_e, 
-                                       NULL, "\033[93m");
+                                       NULL, COLOR);
                                 exit(P_EXIT_FAILURE);
                         }
 
-                        p_mout("\t\t[   OK   ]\n\n", mess_n, NULL, "\033[93m");
+                        p_mout("\t\t[   OK   ]\n\n", mess_n, NULL, COLOR);
                 }
 
                 struct upd_s upd;
@@ -48,11 +48,11 @@ main(int argc, char *argv[])
                 int res = upd_detect_package_manager(&upd);
                 if (res == -1) {
                         p_mout("I can't identify the OS\n\n", mess_w, NULL, 
-                               "\033[93m");
+                               COLOR);
                 } else {
                         if (*upd.upd_pm == '\0') {
                                 p_mout("The package manager is not known\n\n", 
-                                       mess_w, NULL, "\033[93m");
+                                       mess_w, NULL, COLOR);
                         } else {
                                 if (strcmp(argv[1], "-f") == 0       || 
                                     strcmp(argv[1], "-u") == 0       ||
@@ -67,13 +67,13 @@ main(int argc, char *argv[])
                                         
                                         putchar((int)'\n');
                                         p_mout("Time spent: ", mess_w, NULL, 
-                                               "\033[93m");
+                                               COLOR);
                                         printf("%.2f", p_duration_minutes());
                                         p_mout(" minutes\n\n", mess_n, NULL, 
                                                NULL);
                                 } else {
                                         p_mout("Command line option [", mess_w, 
-                                               NULL, "\033[93m");
+                                               NULL, COLOR);
                                         printf("%s", argv[1]);
                                         p_mout("] unclear\n\n", mess_n, NULL, 
                                                NULL);

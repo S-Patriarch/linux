@@ -3,6 +3,8 @@
 #ifndef __UPD_H
 #define __UPD_H         3
 
+#define COLOR   "\033[33m"
+
 P_BEGIN_DECLS
 
 struct upd_s {
