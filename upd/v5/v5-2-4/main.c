@@ -33,14 +33,14 @@ main(int argc, char *argv[])
 
                         unsigned char is_check = upd_network_check();
                         if (is_check == P_FALSE) {
-                                p_mout("\t\t[ FAILED ]\n", mess_n, NULL, 
+                                p_mout("\t\t[FAILED]\n", mess_n, NULL, 
                                        COLOR);
                                 p_mout("No internet connection\n\n", mess_e, 
                                        NULL, COLOR);
                                 exit(P_EXIT_FAILURE);
                         }
 
-                        p_mout("\t\t[   OK   ]\n\n", mess_n, NULL, COLOR);
+                        p_mout("\t\t[  OK  ]\n\n", mess_n, NULL, COLOR);
                 }
 
                 struct upd_s upd;
