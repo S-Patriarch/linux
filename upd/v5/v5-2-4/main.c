@@ -27,8 +27,7 @@ main(int argc, char *argv[])
                     strcmp(argv[1], "-u") == 0     ||
                     strcmp(argv[1], "--full") == 0 ||
                     strcmp(argv[1], "--update") == 0) {
-                        p_mout("Checking network... ", mess_w, NULL, 
-                               COLOR);
+                        printf("Checking network... ");
                         fflush(stdout);
 
                         unsigned char is_check = upd_network_check();
@@ -67,11 +66,8 @@ main(int argc, char *argv[])
                                         p_timer_stop();
                                         
                                         putchar((int)'\n');
-                                        p_mout("Time spent: ", mess_w, NULL, 
-                                               COLOR);
-                                        printf("%.2f", p_duration_minutes());
-                                        p_mout(" minutes\n\n", mess_n, NULL, 
-                                               NULL);
+                                        printf("Time spent: %.2f minutes\n\n", 
+                                               p_duration_minutes());
                                 } else {
                                         p_mout("Command line option [", mess_w, 
                                                NULL, COLOR);
