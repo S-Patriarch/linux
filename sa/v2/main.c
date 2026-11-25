@@ -7,7 +7,7 @@
 #include <plc/plc.h>
 #include "ver.h"
 
-#define SIG_LEN  35 /* количество сигнатур в структуре данных  */
+#define SIG_LEN  36 /* количество сигнатур в структуре данных  */
 #define BUF_LEN  16 /* количество байт считывания  */
 #define TYP_LEN  32 /* размер названия типа файла  */
 
@@ -52,7 +52,8 @@ static struct sig_s sig[SIG_LEN] = {
         { "RGB", {0x01,0xDA}, 2 },
         { "XPM (X PixMap)", {0x2F,0x2A,0x20,0x58,0x50,0x4D,0x20,0x2A,0x2F}, 9 },
         { "SH (shell-script)", {0x23,0x21}, 2 },
-        { "SWP (swap-file Vim)", {0x62,0x30,0x56,0x49,0x4D}, 5 }
+        { "SWP (swap-file Vim)", {0x62,0x30,0x56,0x49,0x4D}, 5 },
+        { "SQLite 3", {0x53,0x51,0x4C,0x69,0x74,0x65,0x20,0x66,0x6F,0x72,0x6D,0x61,0x74,0x20,0x33,0x00}, 16 }
 };
 
 static unsigned char buf[BUF_LEN] = {0};
